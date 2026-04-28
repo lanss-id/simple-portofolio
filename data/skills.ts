@@ -1,0 +1,16 @@
+export const skills: string[] = [
+  'React / Next.js',
+  'TypeScript',
+  'Node.js / NestJS',
+  'PHP / Laravel',
+  'PostgreSQL / MySQL',
+  'Docker / AWS / GCP',
+  'LLM Integration',
+  'RAG Architecture',
+  'Prompt Engineering',
+  'n8n Automation',
+  'CI/CD',
+  'Vue.js',
+  'Tailwind CSS',
+  'REST / GraphQL',
+]

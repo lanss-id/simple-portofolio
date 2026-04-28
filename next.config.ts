@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // Static export for zero-server cost deploy
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    // Required for static export
+    unoptimized: true,
+  },
+}
 
-export default nextConfig;
+export default nextConfig
