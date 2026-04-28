@@ -26,7 +26,7 @@ export function Footer() {
           {/* Left: contact info */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <a
-              href="mailto:maulanakayyis@gmail.com"
+              href="mailto:maulanakayyis354@gmail.com"
               style={{
                 fontSize: 'clamp(0.875rem, 1.2vw, 1rem)',
                 color: 'var(--fg)',
@@ -40,7 +40,7 @@ export function Footer() {
               onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--fg-muted)')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--fg)')}
             >
-              maulanakayyis@gmail.com
+              maulanakayyis354@gmail.com
             </a>
             <span style={{ fontSize: '0.8rem', color: 'var(--fg-subtle)' }}>
               Indonesia / Remote
@@ -50,9 +50,9 @@ export function Footer() {
           {/* Right: social links */}
           <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
             {[
-              { href: 'https://linkedin.com/in/maulanakayyis', label: 'LinkedIn' },
-              { href: 'https://github.com/maulanakayyis', label: 'GitHub' },
-              { href: 'mailto:maulanakayyis@gmail.com', label: 'Email' },
+              { href: 'https://linkedin.com/in/lanss-id', label: 'LinkedIn' },
+              { href: 'https://github.com/lanss-id', label: 'GitHub' },
+              { href: 'mailto:maulanakayyis354@gmail.com', label: 'Email' },
             ].map((link) => (
               <a
                 key={link.label}

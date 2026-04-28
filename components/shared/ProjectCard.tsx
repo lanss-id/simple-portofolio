@@ -15,7 +15,7 @@ export function ProjectCard({ project }: { project: Project }) {
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className="project-row group"
-      style={{ paddingTop: 'clamp(2rem, 3.5vw, 3.5rem)', paddingBottom: 'clamp(2rem, 3.5vw, 3.5rem)' }}
+      style={{ paddingTop: 'clamp(1.25rem, 2vw, 2rem)', paddingBottom: 'clamp(1.25rem, 2vw, 2rem)' }}
     >
       <div
         style={{
@@ -51,7 +51,7 @@ export function ProjectCard({ project }: { project: Project }) {
             style={{
               borderRadius: '0.75rem',
               overflow: 'hidden',
-              aspectRatio: '4/3',
+              aspectRatio: '16/9',
               position: 'relative',
             }}
           >

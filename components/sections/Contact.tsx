@@ -25,7 +25,7 @@ export function Contact() {
         {/* Giant CTA heading */}
         <motion.a
           ref={ctaRef}
-          href="mailto:maulanakayyis@gmail.com"
+          href="mailto:maulanakayyis354@gmail.com"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -47,7 +47,7 @@ export function Contact() {
         </motion.a>
 
         <motion.a
-          href="mailto:maulanakayyis@gmail.com"
+          href="mailto:maulanakayyis354@gmail.com"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -88,14 +88,14 @@ export function Contact() {
 
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <a
-              href="mailto:maulanakayyis@gmail.com"
+              href="mailto:maulanakayyis354@gmail.com"
               className="cta-btn primary"
             >
               Send Email
               <ArrowUpRight size={13} strokeWidth={1.5} />
             </a>
             <a
-              href="https://linkedin.com/in/maulanakayyis"
+              href="https://linkedin.com/in/lanss-id"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-btn"
@@ -103,7 +103,7 @@ export function Contact() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/maulanakayyis"
+              href="https://github.com/lanss-id"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-btn"
