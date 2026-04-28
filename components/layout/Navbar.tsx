@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { slideDown } from '@/lib/animations'
+import { useTheme } from '@/components/shared/ThemeProvider'
+import { Sun, Moon, X, Menu } from 'lucide-react'
 
 const navLinks = [
   { href: '#work', label: 'Work' },
@@ -13,12 +14,11 @@ const navLinks = [
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { theme, toggle } = useTheme()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    setMounted(true)
   }, [])
 
   function handleNavClick(href: string) {
@@ -30,93 +30,106 @@ export function Navbar() {
   }
 
   return (
-    <motion.nav
-      initial="hidden"
-      animate="visible"
-      variants={slideDown}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-nav' : 'bg-transparent'
-      }`}
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 pointer-events-none"
     >
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
-            className="text-sm font-semibold tracking-tight hover:opacity-60 transition-opacity"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            MKP
-          </a>
+      <nav
+        className="floating-nav pointer-events-auto flex items-center gap-2 px-4 py-2.5"
+        style={{ maxWidth: '680px', width: 'calc(100% - 3rem)' }}
+      >
+        {/* Logo */}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+          className="text-sm font-bold tracking-widest uppercase hover:opacity-60 transition-opacity mr-auto"
+          style={{ fontFamily: 'var(--font-display)', color: 'var(--fg)' }}
+        >
+          MKP
+        </a>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex gap-8 text-sm">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="nav-link text-neutral-500 hover:text-neutral-900 transition-colors"
-              >
-                {link.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Hamburger */}
-          <button
-            className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-          >
-            <span
-              className={`block w-5 h-[1.5px] bg-neutral-900 transition-all duration-300 ${
-                menuOpen ? 'translate-y-[6.5px] rotate-45' : ''
-              }`}
-            />
-            <span
-              className={`block w-5 h-[1.5px] bg-neutral-900 transition-all duration-300 ${
-                menuOpen ? 'opacity-0 scale-x-0' : ''
-              }`}
-            />
-            <span
-              className={`block w-5 h-[1.5px] bg-neutral-900 transition-all duration-300 ${
-                menuOpen ? '-translate-y-[6.5px] -rotate-45' : ''
-              }`}
-            />
-          </button>
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <button
+              key={link.href}
+              onClick={() => handleNavClick(link.href)}
+              className="nav-link text-xs font-medium tracking-widest uppercase"
+              style={{ color: 'var(--fg-muted)' }}
+            >
+              {link.label}
+            </button>
+          ))}
         </div>
 
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              key="mobile-menu"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden md:hidden"
-            >
-              <div className="flex flex-col gap-1 pt-6 pb-3 border-t border-neutral-200/60 mt-4">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.href}
-                    onClick={() => handleNavClick(link.href)}
-                    className="text-left py-3 text-lg font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.nav>
+        {/* Theme toggle */}
+        {mounted && (
+          <button
+            onClick={toggle}
+            className="theme-toggle ml-2"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? (
+              <Moon size={13} strokeWidth={1.5} />
+            ) : (
+              <Sun size={13} strokeWidth={1.5} />
+            )}
+          </button>
+        )}
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden theme-toggle ml-1"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={13} strokeWidth={1.5} /> : <Menu size={13} strokeWidth={1.5} />}
+        </button>
+      </nav>
+
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-auto absolute top-20 left-6 right-6 rounded-2xl border overflow-hidden"
+            style={{
+              background: 'var(--bg)',
+              borderColor: 'var(--border-color)',
+            }}
+          >
+            <div className="flex flex-col py-2">
+              {navLinks.map((link, i) => (
+                <motion.button
+                  key={link.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06 }}
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-left px-6 py-4 text-sm font-medium tracking-widest uppercase border-b last:border-0 transition-all"
+                  style={{
+                    color: 'var(--fg)',
+                    borderColor: 'var(--border-color)',
+                    fontFamily: 'var(--font-display)',
+                  }}
+                >
+                  {link.label}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   )
 }

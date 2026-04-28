@@ -8,10 +8,11 @@ interface HeroProps {
 }
 
 export function Hero({ ready }: HeroProps) {
-  const nameRef = useRef<HTMLHeadingElement>(null)
-  const lastNameRef = useRef<HTMLSpanElement>(null)
-  const subRef = useRef<HTMLDivElement>(null)
-  const metaRef = useRef<HTMLDivElement>(null)
+  const line1Ref = useRef<HTMLSpanElement>(null)
+  const line2Ref = useRef<HTMLSpanElement>(null)
+  const infoRef = useRef<HTMLDivElement>(null)
+  const badgesRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!ready) return
@@ -20,43 +21,28 @@ export function Hero({ ready }: HeroProps) {
 
     loadGSAP().then(({ gsap }) => {
       ctx = gsap.context(() => {
-        const tl = gsap.timeline()
+        const tl = gsap.timeline({ delay: 0.1 })
 
-        tl.from(nameRef.current, {
-          yPercent: 100,
-          opacity: 0,
-          duration: 1,
+        tl.from([line1Ref.current, line2Ref.current], {
+          yPercent: 110,
+          duration: 1.1,
           ease: 'power4.out',
+          stagger: 0.08,
         })
           .from(
-            lastNameRef.current,
-            {
-              yPercent: 100,
-              opacity: 0,
-              duration: 1,
-              ease: 'power4.out',
-            },
-            '-=0.8'
-          )
-          .from(
-            subRef.current,
-            {
-              y: 20,
-              opacity: 0,
-              duration: 0.8,
-              ease: 'power3.out',
-            },
+            infoRef.current,
+            { y: 18, opacity: 0, duration: 0.8, ease: 'power3.out' },
             '-=0.5'
           )
           .from(
-            metaRef.current,
-            {
-              y: 16,
-              opacity: 0,
-              duration: 0.7,
-              ease: 'power3.out',
-            },
-            '-=0.5'
+            badgesRef.current,
+            { y: 18, opacity: 0, duration: 0.8, ease: 'power3.out' },
+            '<'
+          )
+          .from(
+            scrollRef.current,
+            { opacity: 0, duration: 0.6, ease: 'power2.out' },
+            '-=0.3'
           )
       })
     })
@@ -67,51 +53,135 @@ export function Hero({ ready }: HeroProps) {
   }, [ready])
 
   return (
-    <header className="pt-32 pb-20 md:pt-48 md:pb-32 px-6 max-w-6xl mx-auto">
-      <div className="max-w-4xl">
-        {/* Name — overflow hidden per line for clean reveal */}
+    <section
+      id="hero"
+      style={{
+        minHeight: '100svh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        paddingBottom: 'clamp(2rem, 5vh, 4rem)',
+        position: 'relative',
+      }}
+    >
+      {/* Scroll indicator — right side vertical text */}
+      <div
+        ref={scrollRef}
+        style={{
+          position: 'absolute',
+          right: 'clamp(1.5rem, 3vw, 3rem)',
+          bottom: 'clamp(2rem, 6vh, 5rem)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.75rem',
+        }}
+        aria-hidden
+      >
+        <div
+          style={{
+            width: '1px',
+            height: '4rem',
+            background: 'var(--border-strong)',
+          }}
+        />
+        <span className="scroll-indicator">Scroll</span>
+      </div>
+
+      <div className="site-container">
+        {/* Giant name */}
         <h1
-          className="text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-tight mb-8"
-          style={{ fontFamily: 'var(--font-display)' }}
+          aria-label="Maulana Kayyis Purnadiva"
+          style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}
         >
-          <div className="overflow-hidden">
-            <span ref={nameRef} className="block">
-              Maulana Kayyis
+          <div className="overflow-clip">
+            <span ref={line1Ref} className="hero-name block">
+              Maulana
             </span>
           </div>
-          <div className="overflow-hidden">
-            <span ref={lastNameRef} className="block text-neutral-400">
+          <div className="overflow-clip">
+            <span ref={line2Ref} className="hero-name block" style={{ color: 'var(--fg-muted)' }}>
+              Kayyis
+            </span>
+          </div>
+          <div className="overflow-clip">
+            <span className="hero-name block" style={{ color: 'var(--fg-muted)' }}>
               Purnadiva
             </span>
           </div>
         </h1>
 
+        {/* Bottom row: description left + badges right */}
         <div
-          ref={subRef}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mt-12"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            gap: '2rem',
+            flexWrap: 'wrap',
+          }}
         >
-          <div className="max-w-xl">
-            <p className="text-lg md:text-xl text-neutral-500 leading-relaxed">
-              Full Stack Engineer &amp; AI-Integrated Developer. Jakarta based,
-              remote ready. Four years of experience building scalable web
-              applications, AI-powered systems, and cloud infrastructure across
-              fintech, e-commerce, and government sectors.
+          {/* Left: description */}
+          <div ref={infoRef} style={{ maxWidth: '28rem' }}>
+            <p
+              style={{
+                fontSize: 'clamp(0.95rem, 1.6vw, 1.1rem)',
+                lineHeight: 1.7,
+                color: 'var(--fg-muted)',
+                fontFamily: 'var(--font-body)',
+              }}
+            >
+              Full Stack Engineer & AI-Integrated Developer.
+              <br />
+              Jakarta based, remote ready.
+              <br />
+              Four years building scalable web apps, AI-powered
+              systems, and cloud infrastructure.
             </p>
           </div>
 
+          {/* Right: status badges */}
           <div
-            ref={metaRef}
-            className="flex flex-col gap-2 text-sm text-neutral-500 shrink-0"
+            ref={badgesRef}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.4rem',
+              alignItems: 'flex-end',
+              flexShrink: 0,
+            }}
           >
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.8rem',
+                color: 'var(--fg-muted)',
+              }}
+            >
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: '#22c55e',
+                  display: 'inline-block',
+                  boxShadow: '0 0 6px #22c55e',
+                }}
+              />
               Available for work
             </span>
-            <span>Indonesia / Remote</span>
-            <span>4+ Years Experience</span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--fg-subtle)' }}>
+              Indonesia / Remote
+            </span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--fg-subtle)' }}>
+              4+ Years Experience
+            </span>
           </div>
         </div>
       </div>
-    </header>
+    </section>
   )
 }

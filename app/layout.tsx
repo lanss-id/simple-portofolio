@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Sora, DM_Sans } from 'next/font/google'
+import { Big_Shoulders, DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const soraFont = Sora({
+const bigShoulders = Big_Shoulders({
   variable: '--font-display',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   display: 'swap',
 })
 
@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${soraFont.variable} ${dmSans.variable}`}
+      className={`${bigShoulders.variable} ${dmSans.variable}`}
       style={{ fontFamily: 'var(--font-body)' }}
     >
       <body>{children}</body>
