@@ -18,6 +18,14 @@ export function ProjectCard({ project }: { project: Project }) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="pcard"
     >
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <linearGradient id="icon-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="100%" stopColor="#a3a3a3" />
+          </linearGradient>
+        </defs>
+      </svg>
       <Link href={`/work/${project.slug}`} className="pcard-link">
         <div className="pcard-inner">
           {/* Left: Info */}

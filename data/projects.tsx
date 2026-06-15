@@ -1,4 +1,21 @@
 import type { Project } from '@/types'
+import {
+  TrendingUp,
+  BrainCircuit,
+  History,
+  Zap,
+  Landmark,
+  Lock,
+  Smartphone,
+  ShoppingBag,
+  Boxes,
+  Bell,
+  Globe,
+  GraduationCap,
+  RefreshCcw,
+  ClipboardCheck,
+  Rocket
+} from 'lucide-react'
 
 export const projects: Project[] = [
   {
@@ -18,7 +35,7 @@ export const projects: Project[] = [
     gradient: 'from-emerald-900 via-emerald-800 to-teal-900',
     heroGradient: 'linear-gradient(145deg, #001A0A 0%, #004A20 55%, #00A854 100%)',
     accentColor: '#00C96B',
-    emoji: '🤖',
+    emoji: <TrendingUp size={80} strokeWidth={2} stroke="url(#icon-grad)" style={{ overflow: 'visible' }} />,
     available: true,
     nextProjectSlug: 'horizon-banking',
     metrics: [
@@ -44,9 +61,9 @@ export const projects: Project[] = [
           'The entire workflow is orchestrated through n8n, which handles data ingestion, RAG retrieval, prompt construction, LLM inference, and trade execution in a single automated pipeline. Docker containerization ensures consistent deployment and easy scaling.',
         ],
         findings: [
-          { icon: '🧠', title: 'Structured Prompts', text: 'Developed a prompt engineering framework that forces Claude to output structured JSON with confidence scores, reducing hallucination by grounding decisions in retrieved data.' },
-          { icon: '📊', title: 'Historical Context', text: 'RAG pipeline retrieves similar market conditions from the past 2 years, giving the LLM pattern-matching capabilities beyond its training data.' },
-          { icon: '⚡', title: 'Real-time Pipeline', text: 'n8n orchestration processes market data, runs analysis, and executes trades in under 30 seconds per cycle.' },
+          { icon: <BrainCircuit size={24} strokeWidth={1.5} />, title: 'Structured Prompts', text: 'Developed a prompt engineering framework that forces Claude to output structured JSON with confidence scores, reducing hallucination by grounding decisions in retrieved data.' },
+          { icon: <History size={24} strokeWidth={1.5} />, title: 'Historical Context', text: 'RAG pipeline retrieves similar market conditions from the past 2 years, giving the LLM pattern-matching capabilities beyond its training data.' },
+          { icon: <Zap size={24} strokeWidth={1.5} />, title: 'Real-time Pipeline', text: 'n8n orchestration processes market data, runs analysis, and executes trades in under 30 seconds per cycle.' },
         ],
       },
       {
@@ -85,7 +102,7 @@ export const projects: Project[] = [
     gradient: 'from-slate-900 via-blue-900 to-indigo-900',
     heroGradient: 'linear-gradient(145deg, #000B35 0%, #001F82 55%, #0050FF 100%)',
     accentColor: '#3B82F6',
-    emoji: '🏦',
+    emoji: <Landmark size={80} strokeWidth={2} stroke="url(#icon-grad)" style={{ overflow: 'visible' }} />,
     available: true,
     nextProjectSlug: 'skaters-ecommerce',
     metrics: [
@@ -110,9 +127,9 @@ export const projects: Project[] = [
           'Plaid API integration provides secure access to real bank account data, enabling features like account linking, balance checking, and transaction history. The UI was built with Tailwind CSS for rapid iteration and consistent design language.',
         ],
         findings: [
-          { icon: '🔐', title: 'Secure by Default', text: 'All financial data encrypted in transit and at rest. Server-side rendering prevents sensitive data from leaking to client bundles.' },
-          { icon: '⚡', title: 'Instant Feedback', text: 'Optimistic UI updates for transfers and actions, with server confirmation and rollback handling.' },
-          { icon: '📱', title: 'Responsive Design', text: 'Mobile-first approach ensures the banking experience works perfectly on any device.' },
+          { icon: <Lock size={24} strokeWidth={1.5} />, title: 'Secure by Default', text: 'All financial data encrypted in transit and at rest. Server-side rendering prevents sensitive data from leaking to client bundles.' },
+          { icon: <Zap size={24} strokeWidth={1.5} />, title: 'Instant Feedback', text: 'Optimistic UI updates for transfers and actions, with server confirmation and rollback handling.' },
+          { icon: <Smartphone size={24} strokeWidth={1.5} />, title: 'Responsive Design', text: 'Mobile-first approach ensures the banking experience works perfectly on any device.' },
         ],
       },
       {
@@ -151,7 +168,7 @@ export const projects: Project[] = [
     gradient: 'from-orange-900 via-red-900 to-rose-900',
     heroGradient: 'linear-gradient(145deg, #1A0400 0%, #4A1000 55%, #7A1E00 100%)',
     accentColor: '#EF4444',
-    emoji: '🛹',
+    emoji: <ShoppingBag size={80} strokeWidth={2} stroke="url(#icon-grad)" style={{ overflow: 'visible' }} />,
     available: true,
     nextProjectSlug: 'emis-government',
     metrics: [
@@ -176,9 +193,9 @@ export const projects: Project[] = [
           'WebSocket integration enables real-time order status updates — customers see their order progress live, and vendors get instant notifications for new orders. This creates a responsive, modern shopping experience without constant page refreshes.',
         ],
         findings: [
-          { icon: '🏗️', title: 'Modular Architecture', text: 'Store and shop modules operate independently, allowing vendors to customize their experience without affecting the platform.' },
-          { icon: '🔔', title: 'Push Notifications', text: 'Real-time WebSocket events for order status changes, new reviews, and platform announcements.' },
-          { icon: '🌐', title: 'Open Source', text: 'Documented API, contribution guidelines, and community-driven feature development.' },
+          { icon: <Boxes size={24} strokeWidth={1.5} />, title: 'Modular Architecture', text: 'Store and shop modules operate independently, allowing vendors to customize their experience without affecting the platform.' },
+          { icon: <Bell size={24} strokeWidth={1.5} />, title: 'Push Notifications', text: 'Real-time WebSocket events for order status changes, new reviews, and platform announcements.' },
+          { icon: <Globe size={24} strokeWidth={1.5} />, title: 'Open Source', text: 'Documented API, contribution guidelines, and community-driven feature development.' },
         ],
       },
       {
@@ -217,7 +234,7 @@ export const projects: Project[] = [
     gradient: 'from-blue-950 via-slate-900 to-gray-900',
     heroGradient: 'linear-gradient(145deg, #0A0A1A 0%, #1A1A3A 55%, #2A2A5A 100%)',
     accentColor: '#818CF8',
-    emoji: '🏛️',
+    emoji: <GraduationCap size={80} strokeWidth={2} stroke="url(#icon-grad)" style={{ overflow: 'visible' }} />,
     available: true,
     nextProjectSlug: 'ai-trading-bot',
     metrics: [
@@ -242,9 +259,9 @@ export const projects: Project[] = [
           'Built with Laravel following strict MVC patterns, the service exposes RESTful APIs that other microservices consume. PostgreSQL provides ACID compliance for critical government data, while Redis caching ensures sub-second response times for frequently accessed records.',
         ],
         findings: [
-          { icon: '🔄', title: 'Data Sync', text: 'Designed eventual consistency patterns for distributed data across government databases, ensuring accuracy without blocking operations.' },
-          { icon: '📋', title: 'Compliance', text: 'All APIs meet Indonesian government data standards and security requirements for handling citizen education records.' },
-          { icon: '🚀', title: 'Performance', text: 'Caching layer reduced average API response time from 2s to under 200ms for common queries.' },
+          { icon: <RefreshCcw size={24} strokeWidth={1.5} />, title: 'Data Sync', text: 'Designed eventual consistency patterns for distributed data across government databases, ensuring accuracy without blocking operations.' },
+          { icon: <ClipboardCheck size={24} strokeWidth={1.5} />, title: 'Compliance', text: 'All APIs meet Indonesian government data standards and security requirements for handling citizen education records.' },
+          { icon: <Rocket size={24} strokeWidth={1.5} />, title: 'Performance', text: 'Caching layer reduced average API response time from 2s to under 200ms for common queries.' },
         ],
       },
       {

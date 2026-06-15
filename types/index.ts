@@ -1,8 +1,10 @@
+import type { ReactNode } from 'react'
+
 export interface ProjectSection {
   label: string
   title: string
   body: string[]
-  findings?: { icon: string; title: string; text: string }[]
+  findings?: { icon: ReactNode; title: string; text: string }[]
   quote?: string
 }
 
@@ -23,7 +25,7 @@ export interface Project {
   gradient: string
   heroGradient: string
   accentColor: string
-  emoji?: string
+  emoji?: ReactNode
   imageSrc?: string
   href?: string
   available: boolean
