@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { Big_Shoulders, DM_Sans } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '@/components/shared/ThemeProvider'
+import { SmoothScroll } from '@/components/shared/SmoothScroll'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
 
 const bigShoulders = Big_Shoulders({
   variable: '--font-display',
@@ -48,7 +52,28 @@ export default function RootLayout({
       style={{ fontFamily: 'var(--font-body)' }}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning>{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('mkp-theme') === 'dark') {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning>
+        <ThemeProvider>
+          <SmoothScroll>
+            <Navbar />
+            {children}
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

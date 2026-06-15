@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '@/components/shared/ThemeProvider'
-import { Sun, Moon, X, Menu } from 'lucide-react'
+import { Sun, Moon, X, Menu, ArrowLeft } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const navLinks = [
   { href: '#work', label: 'Work' },
@@ -16,6 +18,10 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, toggle } = useTheme()
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const isCaseStudy = pathname?.startsWith('/work/')
 
   useEffect(() => {
     setMounted(true)
@@ -23,6 +29,10 @@ export function Navbar() {
 
   function handleNavClick(href: string) {
     setMenuOpen(false)
+    if (isCaseStudy) {
+      router.push(`/${href}`)
+      return
+    }
     const target = document.querySelector(href)
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -41,30 +51,36 @@ export function Navbar() {
         style={{ maxWidth: '680px', width: 'calc(100% - 3rem)' }}
       >
         {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }}
+        <Link
+          href="/"
           className="text-sm font-bold tracking-widest uppercase hover:opacity-60 transition-opacity mr-auto"
           style={{ fontFamily: 'var(--font-display)', color: 'var(--fg)' }}
         >
           MKP
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className="nav-link text-sm font-medium tracking-widest uppercase"
-              style={{ color: 'var(--fg-muted)' }}
+          {isCaseStudy ? (
+            <Link
+              href="/#work"
+              className="nav-link text-sm font-medium tracking-widest uppercase flex items-center gap-2"
+              style={{ color: 'var(--fg)' }}
             >
-              {link.label}
-            </button>
-          ))}
+              <ArrowLeft size={14} /> Back home
+            </Link>
+          ) : (
+            navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => handleNavClick(link.href)}
+                className="nav-link text-sm font-medium tracking-widest uppercase"
+                style={{ color: 'var(--fg-muted)' }}
+              >
+                {link.label}
+              </button>
+            ))
+          )}
         </div>
 
         {/* Theme toggle */}
@@ -83,19 +99,21 @@ export function Navbar() {
         )}
 
         {/* Mobile hamburger */}
-        <button
-          className="md:!hidden theme-toggle ml-1"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <X size={13} strokeWidth={1.5} /> : <Menu size={13} strokeWidth={1.5} />}
-        </button>
+        {!isCaseStudy && (
+          <button
+            className="md:!hidden theme-toggle ml-1"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X size={13} strokeWidth={1.5} /> : <Menu size={13} strokeWidth={1.5} />}
+          </button>
+        )}
       </nav>
 
       {/* Mobile menu overlay */}
       <AnimatePresence>
-        {menuOpen && (
+        {menuOpen && !isCaseStudy && (
           <motion.div
             key="mobile-menu"
             initial={{ opacity: 0, y: -10 }}

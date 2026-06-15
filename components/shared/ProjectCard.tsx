@@ -2,146 +2,93 @@
 
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import type { Project } from '@/types'
 import { ArrowUpRight } from 'lucide-react'
 
 export function ProjectCard({ project }: { project: Project }) {
-  const imageRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLElement>(null)
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      ref={cardRef}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="project-row group"
-      style={{ paddingTop: 'clamp(1.25rem, 2vw, 2rem)', paddingBottom: 'clamp(1.25rem, 2vw, 2rem)' }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="pcard"
     >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'auto 1fr auto',
-          gap: 'clamp(1.5rem, 3vw, 3rem)',
-          alignItems: 'start',
-        }}
-      >
-        {/* Number */}
-        <span
-          className="project-number"
-          style={{ paddingTop: '0.35rem', minWidth: '2rem' }}
-        >
-          {project.number}
-        </span>
-
-        {/* Main content: image + info */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 'clamp(1.5rem, 3vw, 3rem)',
-            alignItems: 'start',
-          }}
-          className="md-project-grid"
-        >
-          {/* Image */}
-          <motion.div
-            ref={imageRef}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              borderRadius: '0.75rem',
-              overflow: 'hidden',
-              aspectRatio: '16/9',
-              position: 'relative',
-            }}
-          >
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex flex-col items-center justify-center`}
-            >
-              {project.emoji && (
-                <div style={{ fontSize: '3.5rem', marginBottom: '0.75rem' }} aria-hidden>
-                  {project.emoji}
-                </div>
-              )}
-              <div
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.85rem',
-                  color: 'rgba(255,255,255,0.85)',
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {project.techStack.join(' · ')}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Info */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: '1.25rem',
-              height: '100%',
-            }}
-          >
-            <div>
-              {/* Tags */}
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+      <Link href={`/work/${project.slug}`} className="pcard-link">
+        <div className="pcard-inner">
+          {/* Left: Info */}
+          <div className="pcard-info">
+            <div className="pcard-top">
+              <span className="pnum">{project.number}</span>
+              <div className="tags">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="tag-pill">
-                    {tag}
-                  </span>
+                  <span key={tag} className="tag">{tag}</span>
                 ))}
               </div>
-
-              {/* Title */}
-              <h3
-                className="project-title"
-                style={{ marginBottom: '0.75rem' }}
-              >
-                {project.title}
-              </h3>
-
-              <p
-                style={{
-                  fontSize: 'clamp(0.9rem, 1.25vw, 1rem)',
-                  color: 'var(--fg)',
-                  fontWeight: 500,
-                  lineHeight: 1.7,
-                  fontFamily: 'var(--font-body)',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                {project.description}
-              </p>
             </div>
 
-            {/* Tech stack */}
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {project.techStack.map((tech) => (
-                <span key={tech} className="tech-tag">
-                  {tech}
-                </span>
-              ))}
+            <div className="pcard-mid">
+              {project.company && (
+                <span className="pcompany">{project.company}</span>
+              )}
+              <h3 className="pname">{project.title}</h3>
+              <p className="pdesc">{project.subtitle}</p>
+            </div>
+
+            <div className="pcard-bottom">
+              {project.metrics && project.metrics.length > 0 && (
+                <div className="pmetrics">
+                  {project.metrics.slice(0, 2).map((m, i) => (
+                    <div key={i} className="pmetric">
+                      <span className="pm-val">{m.value}</span>
+                      <span className="pm-label">{m.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="pcard-techrow">
+                {project.techStack.map((tech) => (
+                  <span key={tech} className="ptech">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Visual */}
+          <div className="pcard-vis">
+            <div
+              className="pcard-bg"
+              style={{ background: project.heroGradient }}
+            />
+            {/* Decorative blobs */}
+            <div
+              className="blob blob1"
+              style={{ background: project.accentColor }}
+            />
+            <div
+              className="blob blob2"
+              style={{ background: project.accentColor, opacity: 0.12 }}
+            />
+            {/* Emoji center */}
+            <div className="pcard-emoji">
+              {project.emoji && (
+                <span className="pcard-emoji-icon">{project.emoji}</span>
+              )}
+              <span className="pcard-emoji-label">
+                {project.techStack.join(' · ')}
+              </span>
+            </div>
+            {/* Corner arrow */}
+            <div className="p-arrow">
+              <ArrowUpRight size={16} strokeWidth={1.5} color="white" />
             </div>
           </div>
         </div>
-
-        {/* Arrow */}
-        <div style={{ paddingTop: '0.25rem' }}>
-          <motion.span
-            whileHover={{ x: 2, y: -2 }}
-            transition={{ duration: 0.2 }}
-            className="arrow-link"
-            aria-hidden
-          >
-            <ArrowUpRight size={14} strokeWidth={1.5} />
-          </motion.span>
-        </div>
-      </div>
+      </Link>
     </motion.article>
   )
 }

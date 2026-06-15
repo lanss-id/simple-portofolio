@@ -14,6 +14,7 @@ const marqueeItems = [
 export function Work() {
   const trackRef = useRef<HTMLDivElement>(null)
   const headingRef = useRef<HTMLHeadingElement>(null)
+  const countRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     if (!trackRef.current) return
@@ -51,6 +52,20 @@ export function Work() {
             },
           })
         }
+
+        // Count reveal
+        if (countRef.current) {
+          gsap.from(countRef.current, {
+            opacity: 0,
+            y: 10,
+            duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: countRef.current,
+              start: 'top 90%',
+            },
+          })
+        }
       })
     }
 
@@ -62,6 +77,7 @@ export function Work() {
   }, [])
 
   const doubled = [...marqueeItems, ...marqueeItems]
+  const available = projects.filter((p) => p.available)
 
   return (
     <section id="work" style={{ paddingTop: 'clamp(4rem, 8vw, 8rem)' }}>
@@ -78,20 +94,23 @@ export function Work() {
       </div>
 
       <div className="site-container">
-        {/* Section heading */}
-        <div className="overflow-clip" style={{ marginBottom: 'clamp(2.5rem, 5vw, 5rem)' }}>
-          <h2 ref={headingRef} className="section-heading">
-            Selected Work
-          </h2>
+        {/* Section header — dvdrod style */}
+        <div className="s-header">
+          <div className="overflow-clip">
+            <h2 ref={headingRef} className="section-heading">
+              Selected Work
+            </h2>
+          </div>
+          <span ref={countRef} className="s-count">
+            ({String(available.length).padStart(2, '0')})
+          </span>
         </div>
 
-        {/* Project list */}
-        <div>
-          {projects
-            .filter((p) => p.available)
-            .map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+        {/* Project cards */}
+        <div className="projects">
+          {available.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
         </div>
       </div>
     </section>
