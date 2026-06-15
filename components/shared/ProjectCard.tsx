@@ -66,8 +66,8 @@ export function ProjectCard({ project }: { project: Project }) {
               <div
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.7rem',
-                  color: 'rgba(255,255,255,0.5)',
+                  fontSize: '0.85rem',
+                  color: 'rgba(255,255,255,0.85)',
                   letterSpacing: '0.05em',
                   textTransform: 'uppercase',
                 }}
@@ -108,7 +108,8 @@ export function ProjectCard({ project }: { project: Project }) {
               <p
                 style={{
                   fontSize: 'clamp(0.9rem, 1.25vw, 1rem)',
-                  color: 'var(--fg-muted)',
+                  color: 'var(--fg)',
+                  fontWeight: 500,
                   lineHeight: 1.7,
                   fontFamily: 'var(--font-body)',
                   marginBottom: '1.5rem',

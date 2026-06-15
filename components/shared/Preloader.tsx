@@ -103,8 +103,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
       </span>
       <span
         style={{
-          fontSize: '0.75rem',
-          color: 'rgba(255,255,255,0.35)',
+          fontSize: '0.85rem',
+          color: 'rgba(255,255,255,0.6)',
           letterSpacing: '0.2em',
           textTransform: 'uppercase',
         }}

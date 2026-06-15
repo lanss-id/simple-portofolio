@@ -12,11 +12,6 @@ export function About() {
       style={{ paddingTop: 'clamp(4rem, 8vw, 8rem)', paddingBottom: 'clamp(4rem, 8vw, 8rem)' }}
     >
       <div className="site-container">
-        {/* Section label */}
-        <span className="section-label" style={{ display: 'block', marginBottom: '2.5rem' }}>
-          About
-        </span>
-
         {/* Two-column layout */}
         <div
           style={{
@@ -34,6 +29,10 @@ export function About() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
+            <span className="section-label" style={{ display: 'block', marginBottom: '2.5rem' }}>
+              About
+            </span>
+
             <p
               style={{
                 fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)',
@@ -53,7 +52,8 @@ export function About() {
             <p
               style={{
                 fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)',
-                color: 'var(--fg-muted)',
+                color: 'var(--fg)',
+                fontWeight: 500,
                 lineHeight: 1.75,
                 marginBottom: '1.25rem',
               }}
@@ -67,7 +67,8 @@ export function About() {
             <p
               style={{
                 fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)',
-                color: 'var(--fg-muted)',
+                color: 'var(--fg)',
+                fontWeight: 500,
                 lineHeight: 1.75,
                 marginBottom: '2.5rem',
               }}
@@ -91,12 +92,14 @@ export function About() {
 
           {/* Right: experience list */}
           <motion.div
+            id="experience"
+            style={{ scrollMarginTop: 'clamp(4rem, 8vw, 8rem)' }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            <span className="section-label" style={{ display: 'block', marginBottom: '1.5rem' }}>
+            <span className="section-label" style={{ display: 'block', marginBottom: '2.5rem' }}>
               Experience
             </span>
 
@@ -139,7 +142,7 @@ export function About() {
                     </h4>
                     <span
                       style={{
-                        fontSize: '0.7rem',
+                        fontSize: '0.85rem',
                         color: 'var(--fg-subtle)',
                         whiteSpace: 'nowrap',
                         fontVariantNumeric: 'tabular-nums',
@@ -152,8 +155,9 @@ export function About() {
                   </div>
                   <p
                     style={{
-                      fontSize: '0.875rem',
-                      color: 'var(--fg-muted)',
+                      fontSize: '0.95rem',
+                      color: 'var(--fg)',
+                      fontWeight: 500,
                       marginBottom: '0.4rem',
                     }}
                   >
@@ -161,8 +165,9 @@ export function About() {
                   </p>
                   <p
                     style={{
-                      fontSize: '0.875rem',
-                      color: 'var(--fg-subtle)',
+                      fontSize: '0.95rem',
+                      color: 'var(--fg-muted)',
+                      fontWeight: 500,
                       lineHeight: 1.65,
                     }}
                   >

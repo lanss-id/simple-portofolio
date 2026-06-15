@@ -128,7 +128,8 @@ export function Hero({ ready }: HeroProps) {
               style={{
                 fontSize: 'clamp(0.95rem, 1.6vw, 1.1rem)',
                 lineHeight: 1.7,
-                color: 'var(--fg-muted)',
+                color: 'var(--fg)',
+                fontWeight: 500,
                 fontFamily: 'var(--font-body)',
               }}
             >
@@ -157,7 +158,7 @@ export function Hero({ ready }: HeroProps) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                fontSize: '0.8rem',
+                fontSize: '0.9rem',
                 color: 'var(--fg-muted)',
               }}
             >
@@ -173,10 +174,10 @@ export function Hero({ ready }: HeroProps) {
               />
               Available for work
             </span>
-            <span style={{ fontSize: '0.8rem', color: 'var(--fg-subtle)' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--fg-subtle)' }}>
               Indonesia / Remote
             </span>
-            <span style={{ fontSize: '0.8rem', color: 'var(--fg-subtle)' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--fg-subtle)' }}>
               4+ Years Experience
             </span>
           </div>

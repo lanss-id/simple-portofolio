@@ -59,7 +59,7 @@ export function Navbar() {
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="nav-link text-xs font-medium tracking-widest uppercase"
+              className="nav-link text-sm font-medium tracking-widest uppercase"
               style={{ color: 'var(--fg-muted)' }}
             >
               {link.label}
@@ -84,7 +84,7 @@ export function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden theme-toggle ml-1"
+          className="md:!hidden theme-toggle ml-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}

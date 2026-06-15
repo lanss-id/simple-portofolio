@@ -46,8 +46,9 @@ export default function RootLayout({
       lang="en"
       className={`${bigShoulders.variable} ${dmSans.variable}`}
       style={{ fontFamily: 'var(--font-body)' }}
+      suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }
