@@ -32,6 +32,12 @@ export const metadata: Metadata = {
   title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
   description:
     'Full Stack Engineer & AI-Integrated Developer. Jakarta based, remote ready. Four years building scalable web apps, AI-powered systems, and cloud infrastructure.',
+  keywords: [
+    'Full Stack Engineer', 'AI Developer', 'Jakarta', 'React', 'Next.js',
+    'TypeScript', 'Node.js', 'Freelancer', 'Indonesia', 'Web Developer',
+    'Maulana Kayyis', 'MKP',
+  ],
+  robots: { index: true, follow: true },
   openGraph: {
     title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
     description:
@@ -40,11 +46,23 @@ export const metadata: Metadata = {
     siteName: 'MKP Portfolio',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: 'https://lanss.my.id/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
     description: 'Full Stack Engineer & AI-Integrated Developer.',
+    images: ['https://lanss.my.id/og-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://lanss.my.id',
   },
 }
 
@@ -61,6 +79,29 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Maulana Kayyis Purnadiva",
+              url: "https://lanss.my.id",
+              jobTitle: "Full Stack Engineer",
+              description:
+                "Full Stack Engineer & AI-Integrated Developer. Jakarta based, remote ready.",
+              sameAs: [
+                "https://github.com/lanss-id",
+                "https://www.linkedin.com/in/lanss-id/",
+              ],
+              knowsAbout: [
+                "Full Stack Development",
+                "React", "Next.js", "TypeScript",
+                "AI Integration", "Cloud Infrastructure",
+              ],
+            }),
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
