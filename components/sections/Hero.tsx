@@ -133,12 +133,12 @@ export function Hero({ ready }: HeroProps) {
                 fontFamily: 'var(--font-body)',
               }}
             >
-              Full Stack Engineer & AI-Integrated Developer.
+              Full Stack Engineer & AI Developer.
               <br />
-              Jakarta based, remote ready.
+              Jakarta · Bandung · Remote.
               <br />
               Four years building scalable web apps, AI-powered
-              systems, and cloud infrastructure.
+              systems, and cloud infrastructure. Open for freelance.
             </p>
           </div>
 

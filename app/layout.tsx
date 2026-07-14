@@ -29,19 +29,20 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
+  title: 'Maulana Kayyis Purnadiva — Full Stack Engineer & AI Developer Indonesia',
   description:
-    'Full Stack Engineer & AI-Integrated Developer. Jakarta based, remote ready. Four years building scalable web apps, AI-powered systems, and cloud infrastructure.',
+    'Full Stack Engineer & AI Developer based in Jakarta, Indonesia. 4+ years building scalable web apps, AI-powered systems, and cloud infrastructure. Available for freelance.',
   keywords: [
-    'Full Stack Engineer', 'AI Developer', 'Jakarta', 'React', 'Next.js',
-    'TypeScript', 'Node.js', 'Freelancer', 'Indonesia', 'Web Developer',
-    'Maulana Kayyis', 'MKP',
+    'Full Stack Engineer Indonesia', 'AI Developer Jakarta', 'Freelance Full Stack Developer',
+    'React Developer', 'Next.js Developer', 'TypeScript', 'Node.js',
+    'AI Integration', 'Jakarta Freelancer', 'Bandung Developer',
+    'Maulana Kayyis', 'Remote Full Stack Engineer', 'AI Engineer Indonesia',
   ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
+    title: 'Maulana Kayyis Purnadiva — Full Stack Engineer & AI Developer Indonesia',
     description:
-      'Full Stack Engineer & AI-Integrated Developer. Jakarta based, remote ready.',
+      'Full Stack Engineer & AI Developer based in Jakarta, Indonesia. Available for freelance. 4+ years experience in Next.js, TypeScript, AI systems.',
     url: 'https://lanss.my.id',
     siteName: 'MKP Portfolio',
     locale: 'en_US',
@@ -57,8 +58,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
-    description: 'Full Stack Engineer & AI-Integrated Developer.',
+    title: 'Maulana Kayyis Purnadiva — Full Stack Engineer & AI Developer Indonesia',
+    description: 'Full Stack Engineer & AI Developer based in Jakarta, Indonesia. Available for freelance. 4+ years experience.',
     images: ['https://lanss.my.id/og-image.svg'],
   },
   alternates: {
@@ -87,9 +88,9 @@ export default function RootLayout({
               "@type": "Person",
               name: "Maulana Kayyis Purnadiva",
               url: "https://lanss.my.id",
-              jobTitle: "Full Stack Engineer",
+              jobTitle: "Full Stack Engineer & AI Developer",
               description:
-                "Full Stack Engineer & AI-Integrated Developer. Jakarta based, remote ready.",
+                "Full Stack Engineer & AI Developer based in Jakarta, Indonesia. Available for freelance projects. 4+ years experience building scalable web apps, AI systems, and cloud infrastructure.",
               sameAs: [
                 "https://github.com/lanss-id",
                 "https://www.linkedin.com/in/lanss-id/",
