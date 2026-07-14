@@ -51,13 +51,17 @@
 
 /* ─── Light Mode (default) ──────────────────────────────── */
 :root {
-  /* Portfolio custom colors — dvdrod beige */
+  /* Portfolio palette — warm beige DNA stays */
   --bg: #e0dfd5;
   --fg: #0a0a0a;
   --fg-muted: #222222;
   --fg-subtle: #444444;
   --border-color: rgba(10, 10, 10, 0.1);
   --border-strong: rgba(10, 10, 10, 0.2);
+
+  /* Taste accent — muted brick red, hanya buat highlight */
+  --accent-red: #bf3f3f;
+  --accent-red-muted: rgba(191, 63, 63, 0.12);
 
   /* Shadcn / Tailwind */
   --background: #e0dfd5;
@@ -94,23 +98,26 @@
   --sidebar-ring: rgba(10,10,10,0.3);
 }
 
-/* ─── Dark Mode ─────────────────────────────────────────── */
+/* ─── Dark Mode — True black taste ───────────────────────── */
 .dark {
-  --bg: #0e0e0e;
+  --bg: #0a0a0a;
   --fg: #e0dfd5;
   --fg-muted: #cccccc;
   --fg-subtle: #999999;
   --border-color: rgba(224, 223, 213, 0.1);
   --border-strong: rgba(224, 223, 213, 0.2);
 
-  --background: #0e0e0e;
+  --accent-red: #e05050;
+  --accent-red-muted: rgba(224, 80, 80, 0.12);
+
+  --background: #0a0a0a;
   --foreground: #e0dfd5;
-  --card: #0e0e0e;
+  --card: #0a0a0a;
   --card-foreground: #e0dfd5;
   --popover: #141414;
   --popover-foreground: #e0dfd5;
   --primary: #e0dfd5;
-  --primary-foreground: #0e0e0e;
+  --primary-foreground: #0a0a0a;
   --secondary: rgba(224,223,213,0.06);
   --secondary-foreground: #e0dfd5;
   --muted: rgba(224,223,213,0.06);
@@ -120,10 +127,10 @@
   --border: rgba(224,223,213,0.1);
   --input: rgba(224,223,213,0.1);
   --ring: rgba(224,223,213,0.4);
-  --sidebar: #0e0e0e;
+  --sidebar: #0a0a0a;
   --sidebar-foreground: #e0dfd5;
   --sidebar-primary: #e0dfd5;
-  --sidebar-primary-foreground: #0e0e0e;
+  --sidebar-primary-foreground: #0a0a0a;
   --sidebar-accent: rgba(224,223,213,0.05);
   --sidebar-accent-foreground: #e0dfd5;
   --sidebar-border: rgba(224,223,213,0.1);
@@ -138,12 +145,11 @@
   }
 
   html {
-    font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-body), 'Inter Tight', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--bg);
     color: var(--fg);
-    /* Lenis handles scroll behavior */
   }
 
   body {
@@ -154,8 +160,8 @@
   }
 
   ::selection {
-    background-color: var(--fg);
-    color: var(--bg);
+    background-color: var(--accent-red);
+    color: #ffffff;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -163,6 +169,11 @@
     letter-spacing: -0.01em;
     line-height: 1;
     text-transform: uppercase;
+  }
+
+  /* Code / numbers pake JetBrains Mono (taste signature) */
+  code, pre, .pm-val, .cs-metric-val, .pnum, .s-count {
+    font-family: var(--font-mono), 'JetBrains Mono', monospace !important;
   }
 }
 
@@ -173,13 +184,10 @@
   padding-right: clamp(1.5rem, 6vw, 6rem);
 }
 
-/* ─── Floating Navbar ────────────────────────────────────── */
+/* ─── Floating Navbar — no backdrop-blur (taste: anti-glass) ─ */
 .floating-nav {
   background: var(--bg);
   border: 1px solid var(--border-color);
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: background 0.4s ease, border-color 0.4s ease;
 }
 
@@ -208,7 +216,7 @@
 .preloader {
   position: fixed;
   inset: 0;
-  background: #0e0e0e;
+  background: #0a0a0a;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -253,7 +261,7 @@ body::after {
   z-index: 9997;
 }
 
-/* ─── Section Header — dvdrod style ─────────────────────── */
+/* ─── Section Header ─────────────────────────────────────── */
 .s-header {
   display: flex;
   justify-content: space-between;
@@ -264,13 +272,13 @@ body::after {
 }
 
 .s-count {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--fg-muted);
 }
 
-/* ─── Project Cards — dvdrod split-layout ────────────────── */
+/* ─── Project Cards ────────────────────────────────────────── */
 .projects {
   display: flex;
   flex-direction: column;
@@ -279,13 +287,12 @@ body::after {
 
 .pcard {
   border: 1px solid var(--border-color);
-  border-radius: 0.875rem;
   overflow: hidden;
   transition: border-color 0.4s ease;
 }
 
 .pcard:hover {
-  border-color: var(--border-strong);
+  border-color: var(--accent-red);
 }
 
 .pcard-link {
@@ -316,10 +323,10 @@ body::after {
 
 .pnum {
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.12em;
   color: var(--fg-muted);
-  font-family: var(--font-body);
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
 }
 
 .tags {
@@ -334,7 +341,6 @@ body::after {
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
   border: 1px solid var(--border-color);
-  border-radius: 9999px;
   color: var(--fg-muted);
   font-family: var(--font-body);
 }
@@ -391,12 +397,11 @@ body::after {
 }
 
 .pm-val {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
   font-size: 1.75rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.04em;
   color: var(--fg-muted);
-  text-transform: uppercase;
 }
 
 .pm-label {
@@ -418,7 +423,6 @@ body::after {
   letter-spacing: 0.06em;
   padding: 0.2rem 0.6rem;
   border: 1px solid var(--border-color);
-  border-radius: 9999px;
   color: var(--fg-muted);
   font-family: var(--font-body);
 }
@@ -496,7 +500,7 @@ body::after {
   font-family: var(--font-body);
 }
 
-/* Corner arrow */
+/* Corner arrow — red on hover (taste touch) */
 .p-arrow {
   position: absolute;
   bottom: 1.25rem;
@@ -513,13 +517,13 @@ body::after {
 }
 
 .pcard:hover .p-arrow {
-  background: #fff;
-  border-color: #fff;
+  background: var(--accent-red);
+  border-color: var(--accent-red);
   transform: rotate(45deg);
 }
 
 .pcard:hover .p-arrow svg {
-  stroke: #000;
+  stroke: #fff;
 }
 
 /* ─── Marquee track ─────────────────────────────────────── */
@@ -563,21 +567,20 @@ body::after {
   transition: border-color 0.3s ease;
 }
 
-/* ─── CTA Button ─────────────────────────────────────────── */
+/* ─── CTA Button — red accent on primary ─────────────────── */
 .cta-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.75rem;
   border: 1px solid var(--border-strong);
-  border-radius: 9999px;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--fg);
   background: transparent;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   cursor: pointer;
 }
 
@@ -628,7 +631,7 @@ body::after {
 }
 
 .contact-cta:hover {
-  color: var(--fg-muted);
+  color: var(--accent-red);
 }
 
 /* ─── Section divider ────────────────────────────────────── */
@@ -653,8 +656,9 @@ body::after {
 }
 
 .theme-toggle:hover {
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: #ffffff;
 }
 
 /* ─── Overflow clip for text reveal ─────────────────────── */
@@ -744,7 +748,6 @@ body::after {
   display: flex;
   gap: 0;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.75rem;
   overflow: hidden;
   max-width: 700px;
 }
@@ -855,7 +858,6 @@ body::after {
 .cs-finding {
   background: var(--bg);
   border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
   padding: 1.5rem;
 }
 
@@ -884,9 +886,8 @@ body::after {
 .cs-quote {
   margin: 3.5rem 0;
   padding: 2.5rem;
-  border-left: 3px solid var(--cs-accent, var(--fg));
+  border-left: 3px solid var(--accent-red);
   background: var(--bg);
-  border-radius: 0 0.75rem 0.75rem 0;
   border-top: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
@@ -906,7 +907,6 @@ body::after {
 .cs-metrics {
   display: flex;
   gap: 0;
-  border-radius: 1rem;
   overflow: hidden;
   margin-top: 3.5rem;
   border: 1px solid var(--border-color);
@@ -924,9 +924,9 @@ body::after {
 }
 
 .cs-metric-val {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -954,7 +954,8 @@ body::after {
 }
 
 .cs-next:hover {
-  background: var(--border-color);
+  background: var(--accent-red-muted);
+  border-color: var(--accent-red);
 }
 
 .cs-next-label {
@@ -1003,7 +1004,13 @@ body::after {
 }
 
 .cs-next:hover .cs-next-arrow {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
   transform: rotate(45deg);
+}
+
+.cs-next:hover .cs-next-arrow svg {
+  stroke: #fff;
 }
 
 /* Case study footer */
@@ -1046,7 +1053,7 @@ body::after {
 }
 
 .cs-back-link:hover {
-  color: var(--fg);
+  color: var(--accent-red);
 }
 
 .cs-back-link:hover::after {

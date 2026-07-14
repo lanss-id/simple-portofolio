@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { Big_Shoulders, DM_Sans } from 'next/font/google'
+import { Big_Shoulders, Inter_Tight } from 'next/font/google'
+import { JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/shared/ThemeProvider'
 import { SmoothScroll } from '@/components/shared/SmoothScroll'
@@ -13,10 +14,17 @@ const bigShoulders = Big_Shoulders({
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const interTight = Inter_Tight({
   variable: '--font-body',
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
 })
 
@@ -28,7 +36,7 @@ export const metadata: Metadata = {
     title: 'Maulana Kayyis Purnadiva — Full Stack Engineer',
     description:
       'Full Stack Engineer & AI-Integrated Developer. Jakarta based, remote ready.',
-    url: 'https://mkp.dev',
+    url: 'https://lanss.my.id',
     siteName: 'MKP Portfolio',
     locale: 'en_US',
     type: 'website',
@@ -48,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bigShoulders.variable} ${dmSans.variable}`}
+      className={`${bigShoulders.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
       style={{ fontFamily: 'var(--font-body)' }}
       suppressHydrationWarning
     >
